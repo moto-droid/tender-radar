@@ -6,6 +6,8 @@
 
 > GitHub Pages 僅展示前端與示範資料。CAG 即時同步、每日排程、Email 與 LINE 推播需另外啟動或部署 `server.py`。
 
+Netlify 版本已將 `server.py` 的能力改寫成 Netlify Functions，包含 CAG 同步、Netlify Blobs 訂閱儲存、LINE Webhook、測試推播與每 15 分鐘檢查一次的每日排程。推播時間以使用者選擇的台北／新加坡時區計算。
+
 ## 啟動
 
 靜態預覽可直接開啟 `index.html`。若要啟用 CAG 即時同步，請在此資料夾執行：
@@ -52,6 +54,16 @@ python3 server.py
 ```
 
 LINE 使用 Messaging API 的 push message；使用者必須加入 LINE 官方帳號，並由 Webhook 取得其 User ID。將 LINE Developers Console 的 Webhook URL 設為 `https://你的網域/api/line/webhook`，再按 Verify 並啟用 Use webhook。LINE Notify 已停止服務，因此本專案不使用 LINE Notify Token。
+
+### Netlify Git 部署設定
+
+- Repository：`moto-droid/tender-radar`
+- Build command：`npm run build`
+- Publish directory：`dist`
+- Functions directory：`netlify/functions`
+- Node.js：20 或更新版本
+
+正式推播需在 Netlify Site configuration → Environment variables 設定 `.env.example` 中的 SMTP 與 LINE 變數；不要把實際密鑰提交到 GitHub。
 
 ## 串接既有爬蟲
 
