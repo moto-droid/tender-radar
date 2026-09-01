@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="標案雷達 — 集中監測、篩選與追蹤政府採購標案" />
+  <title>標案雷達 Tender Radar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
+  <link rel="stylesheet" href="apple-theme.css" />
+  <link rel="stylesheet" href="intelligence.css" />
+  <link rel="stylesheet" href="subscription.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" aria-label="標案雷達首頁">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span><b>標案雷達</b><small>TENDER RADAR</small></span>
+    </a>
+    <nav>
+      <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌁</span>總覽</button>
+      <button class="nav-item" data-view="tenders"><span class="nav-icon">◫</span>標案清單 <em id="navTenderCount">24</em></button>
+      <button class="nav-item" data-view="rules"><span class="nav-icon">◎</span>監測條件</button>
+      <button class="nav-item" data-view="favorites"><span class="nav-icon">◇</span>我的收藏</button>
+    </nav>
+    <div class="nav-label">系統</div>
+    <nav>
+      <button class="nav-item" data-view="history"><span class="nav-icon">↻</span>執行紀錄</button>
+      <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>通知設定</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="crawler-status"><span class="pulse"></span><div><b>爬蟲運作中</b><small id="lastRun">上次更新：10 分鐘前</small></div></div>
+      <button class="profile"><span>MS</span><div><b>Motospatial</b><small>管理員</small></div><i>⋮</i></button>
+    </div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="開啟選單">☰</button>
+      <div class="breadcrumb"><span>標案雷達</span><i>/</i><b id="pageCrumb">總覽</b></div>
+      <div class="top-actions">
+        <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="搜尋案名、機關、案號…" /><kbd>⌘ K</kbd></label>
+        <button class="icon-btn" id="notificationBtn" aria-label="通知">♢<i></i></button>
+        <button class="primary small" id="runCrawlerBtn"><span>↻</span>立即監測</button>
+      </div>
+    </header>
+
+    <section class="view active" id="dashboardView">
+      <div class="hero-row">
+        <div><p class="eyebrow">TENDER INTELLIGENCE</p><h1>早安，今天有 <em id="heroNewCount">12</em> 筆新標案。</h1><p>系統已完成今日監測，以下是符合您關注條件的最新結果。</p></div>
+        <div class="date-chip"><span>SEP</span><b>02</b><small>星期三 · 2026</small></div>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card mint"><div class="stat-head"><span>今日新增</span><i>↗</i></div><strong id="statNew">12</strong><p><b>+33%</b> 較昨日</p><div class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-head"><span>符合條件</span><i>◎</i></div><strong id="statMatches">24</strong><p>來自 <b>6</b> 個監測條件</p><div class="progress"><i style="width:68%"></i></div></article>
+        <article class="stat-card"><div class="stat-head"><span>即將截止</span><i>⌛</i></div><strong id="statExpiring">5</strong><p><b class="orange">3 筆</b> 將於 48 小時內截止</p><div class="deadline-dots"><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-head"><span>預估總金額</span><i>NT$</i></div><strong>18.6<span> M</span></strong><p>目前可追蹤案件合計</p><div class="amount-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+      </div>
+
+      <div class="source-strip">
+        <div class="source-strip-title"><span class="pulse"></span><div><b>跨平台同步正常</b><small>同時搜尋台灣採購公報網與 Changi Airport Group（CAG）</small></div></div>
+        <div class="source-health"><span class="source-logo tw">TW</span><div><b>台灣採購公報網</b><small>最後同步 10 分鐘前</small></div><em>24</em></div>
+        <div class="source-health"><span class="source-logo sg">CAG</span><div><b>Changi Airport Group</b><small>最後同步 10 分鐘前</small></div><em id="cagCount">6</em></div>
+        <button class="outline-btn" id="syncSourcesBtn">↻ 同步全部</button>
+      </div>
+
+      <section class="intelligence-section">
+        <div class="section-title-row"><div><p class="eyebrow">TODAY'S PROCUREMENT INTELLIGENCE</p><h2>今日標案辨識</h2><p>依案名、發布機關及標書摘要自動辨識，點選分類即可篩選標案。</p></div><div class="recognition-status"><span>AI</span><div><b>大綱辨識已啟用</b><small id="recognitionCoverage">已分析 0 筆標案</small></div></div></div>
+        <div class="intelligence-grid">
+          <button class="insight-card cleaning" data-insight="cleaning"><span class="insight-icon">✦</span><div><small>清潔維護類型</small><strong id="cleaningCount">0</strong><p id="cleaningSummary">今日尚無符合案件</p></div><i>→</i></button>
+          <button class="insight-card airport" data-insight="airport"><span class="insight-icon">✈</span><div><small>機場／航空站</small><strong id="airportCount">0</strong><p id="airportSummary">今日尚無符合案件</p></div><i>→</i></button>
+          <button class="insight-card transit" data-insight="transit"><span class="insight-icon">▣</span><div><small>公共交通設施</small><strong id="transitCount">0</strong><p id="transitSummary">今日尚無符合案件</p></div><i>→</i></button>
+          <button class="insight-card special" data-insight="special"><span class="insight-icon">✚</span><div><small>醫院／特殊機構</small><strong id="specialCount">0</strong><p id="specialSummary">醫院、監獄、軍方、矯正機關</p></div><i>→</i></button>
+        </div>
+        <div class="agency-groups" id="agencyGroups"></div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel tenders-panel">
+          <div class="panel-head"><div><p class="eyebrow">LATEST MATCHES</p><h2>最新符合標案</h2></div><button class="text-btn" data-jump="tenders">查看全部 <span>→</span></button></div>
+          <div class="filter-row">
+            <div class="chips" id="quickFilters"><button class="active" data-filter="all">全部</button><button data-filter="new">今日新增 <b>12</b></button><button data-filter="urgent">即將截止 <b>5</b></button></div>
+            <button class="outline-btn" id="exportBtn">⇩ 匯出 CSV</button>
+          </div>
+          <div class="tender-list" id="dashboardTenderList"></div>
+        </section>
+
+        <aside class="right-column">
+          <section class="panel radar-panel">
+            <div class="panel-head"><div><p class="eyebrow">MONITORING</p><h2>監測概況</h2></div><button class="icon-plain" data-jump="rules">•••</button></div>
+            <div class="radar-wrap"><div class="radar"><span></span><i></i><b>6<small>啟用條件</small></b></div></div>
+            <div class="rule-list" id="miniRuleList"></div>
+            <button class="add-rule" id="addRuleBtn">＋ 新增監測條件</button>
+          </section>
+          <section class="panel daily-brief-card">
+            <div class="panel-head"><div><p class="eyebrow">DAILY ACTION BRIEF</p><h2>今日建議準備</h2></div><button class="text-btn" data-view="settings">設定推播</button></div>
+            <div id="dailyPrepList"></div>
+          </section>
+          <section class="panel activity-panel">
+            <div class="panel-head"><div><p class="eyebrow">ACTIVITY</p><h2>近期動態</h2></div></div>
+            <div class="timeline" id="activityTimeline"></div>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="tendersView">
+      <div class="page-head"><div><p class="eyebrow">ALL TENDERS</p><h1>標案清單</h1><p>檢視與管理所有符合監測條件的案件。</p></div><div class="head-actions"><button class="outline-btn" id="advancedFilterBtn">⚲ 進階篩選</button><button class="outline-btn" id="exportBtn2">⇩ 匯出 CSV</button></div></div>
+      <section class="panel table-panel">
+        <div class="saved-search-bar"><span>套用搜尋條件</span><div class="saved-rule-pills" id="savedRulePills"></div><button class="text-btn" id="clearRuleFilter">清除</button></div>
+        <div class="table-tools"><label class="table-search">⌕ <input id="tenderSearch" placeholder="搜尋案名、機關或案號…"></label><select id="sourceFilter"><option value="all">全部資料來源</option><option value="taiwan">台灣採購公報網</option><option value="cag">CAG / Singapore</option></select><select id="statusFilter"><option value="all">全部狀態</option><option value="new">今日新增</option><option value="urgent">即將截止</option></select><select id="categoryFilter"><option value="all">全部類別</option></select></div>
+        <div class="active-filters" id="activeFilters"></div>
+        <div class="full-list" id="fullTenderList"></div>
+      </section>
+    </section>
+
+    <section class="view" id="rulesView">
+      <div class="page-head"><div><p class="eyebrow">MONITORING RULES</p><h1>我的搜尋條件</h1><p>把常用查詢儲存成監測條件，系統會自動找出值得關注的標案。</p></div><button class="primary" id="addRuleBtn2">＋ 建立搜尋條件</button></div>
+      <div class="search-guide">
+        <div class="guide-copy"><span class="guide-icon">✦</span><div><b>不知道怎麼設定？從範本開始</b><p>參考常見採購查詢方式，可再自由增減關鍵字、機關、地區、金額及日期。</p></div></div>
+        <div class="template-list"><button data-template="it">資訊服務</button><button data-template="iot">IoT 設備</button><button data-template="marketing">活動行銷</button></div>
+      </div>
+      <div class="rules-grid" id="rulesGrid"></div>
+    </section>
+
+    <section class="view" id="favoritesView"><div class="page-head"><div><p class="eyebrow">SAVED</p><h1>我的收藏</h1><p>集中追蹤您最關注的案件。</p></div></div><section class="panel"><div class="full-list" id="favoriteList"></div></section></section>
+    <section class="view" id="historyView"><div class="page-head"><div><p class="eyebrow">CRAWLER LOG</p><h1>執行紀錄</h1><p>查看爬蟲執行狀態與擷取結果。</p></div></div><section class="panel"><div class="history-list" id="historyList"></div></section></section>
+    <section class="view" id="settingsView">
+      <div class="page-head"><div><p class="eyebrow">DAILY TENDER BRIEF</p><h1>每日訂閱推播</h1><p>每天收到濃縮版建議標案，以及可立即分派的準備工項。</p></div><span class="subscription-state" id="subscriptionState"><i></i> 尚未啟用</span></div>
+      <div class="subscription-layout">
+        <section class="panel subscription-panel">
+          <div class="subscription-step"><span>1</span><div><h2>選擇推播方式</h2><p>可同時選擇電子信箱及 LINE。</p></div></div>
+          <div class="channel-grid">
+            <label class="channel-card"><input type="checkbox" id="emailEnabled" checked><div class="channel-check">✓</div><span class="channel-icon email">@</span><div><b>電子信箱</b><small>完整摘要與準備工項清單</small></div></label>
+            <label class="channel-card"><input type="checkbox" id="lineEnabled"><div class="channel-check">✓</div><span class="channel-icon line">LINE</span><div><b>LINE 官方帳號</b><small>手機即時查看濃縮版建議</small></div></label>
+          </div>
+          <div class="channel-fields" id="emailFields"><label>收件電子信箱<input id="subscriberEmail" type="email" placeholder="name@company.com"></label></div>
+          <div class="channel-fields line-fields" id="lineFields" hidden><div class="line-connect"><span class="channel-icon line">LINE</span><div><b id="lineConnectTitle">連結 LINE 帳號</b><p>請先加入標案雷達官方帳號，再完成帳號綁定。</p></div><button class="outline-btn" id="connectLineBtn" type="button">開始連結</button></div><details><summary>進階：使用者 ID</summary><label>LINE User ID<input id="lineUserId" placeholder="由 LINE Webhook 自動帶入，或輸入 U 開頭 ID"></label></details></div>
+
+          <div class="subscription-step"><span>2</span><div><h2>設定寄送時間</h2><p>依指定時區每日彙整一次。</p></div></div>
+          <div class="schedule-grid"><label>每日寄送時間<input id="digestTime" type="time" value="08:30"></label><label>時區<select id="digestTimezone"><option value="Asia/Taipei">台北 GMT+8</option><option value="Asia/Singapore">新加坡 GMT+8</option></select></label><label>每次建議數量<select id="digestLimit"><option value="3">精選 3 筆</option><option value="5" selected>精選 5 筆</option><option value="10">精選 10 筆</option></select></label></div>
+
+          <div class="subscription-step"><span>3</span><div><h2>選擇摘要內容</h2><p>只保留每天真正需要決策的資訊。</p></div></div>
+          <div class="digest-options"><label><input type="checkbox" id="includePrep" checked><span><b>建議準備工項</b><small>資格、文件、估價、現勘與時程建議</small></span></label><label><input type="checkbox" id="includeOutline" checked><span><b>標書大綱</b><small>工作範圍、發布機構及風險提醒</small></span></label><label><input type="checkbox" id="includeDeadlines" checked><span><b>截止提醒</b><small>標示 7 天內即將截止案件</small></span></label><label><input type="checkbox" id="onlyHighMatch"><span><b>只推播高相符標案</b><small>相符度 85% 以上</small></span></label></div>
+          <div class="subscription-actions"><button class="outline-btn" id="sendTestBtn" type="button">傳送測試摘要</button><button class="primary" id="saveSubscriptionBtn" type="button">啟用每日推播</button></div>
+        </section>
+        <aside class="panel digest-preview-panel"><div class="preview-device"><div class="preview-top"><span id="previewChannel">EMAIL PREVIEW</span><i>•••</i></div><div class="preview-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><b>標案雷達每日精選</b><small id="previewDate">今日 08:30</small></div></div><div class="preview-summary"><strong id="previewCount">3</strong><span>筆建議標案<br><small>已依您的條件排序</small></span></div><div id="digestPreviewList"></div><div class="preview-footer">這是濃縮預覽 · 完整內容請開啟標案雷達</div></div></aside>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="ruleModal" hidden>
+    <form class="modal rule-builder" id="ruleForm">
+      <button type="button" class="modal-close" data-close>×</button>
+      <div class="builder-head"><div><p class="eyebrow">SEARCH BUILDER</p><h2 id="ruleModalTitle">建立搜尋條件</h2><p>設定越精準，收到的通知越有價值。所有欄位之後都可以修改。</p></div><div class="live-match"><b id="matchPreview">8</b><span>預估相符</span></div></div>
+      <input type="hidden" name="id">
+      <div class="builder-section"><div class="section-index">1</div><div class="builder-content"><h3>選擇資料來源</h3><div class="source-options"><label><input type="checkbox" name="sources" value="taiwan" checked><span class="source-logo tw">TW</span><div><b>台灣採購公報網</b><small>政府、民間採購與決標資訊</small></div><i>✓</i></label><label><input type="checkbox" name="sources" value="cag" checked><span class="source-logo sg">CAG</span><div><b>Changi Airport Group</b><small>RFQ / Tender · Singapore</small></div><i>✓</i></label></div></div></div>
+      <div class="builder-section"><div class="section-index">2</div><div class="builder-content"><h3>描述您要找什麼</h3><label>搜尋條件名稱<input required name="name" placeholder="例如：智慧場館與人流分析"></label><label>包含關鍵字 <span class="hint">中英文皆可，以逗號分隔</span><input required name="keywords" placeholder="人流, baggage, system integration"><small>符合任一關鍵字即可列入；可在下方改成「全部符合」。</small></label><div class="keyword-options"><label class="inline-radio"><input type="radio" name="logic" value="any" checked> 任一關鍵字</label><label class="inline-radio"><input type="radio" name="logic" value="all"> 全部關鍵字</label></div><label>排除關鍵字 <span class="hint">選填</span><input name="exclude" placeholder="維修, rental"><small>案名含有這些字詞時不顯示。</small></label></div></div>
+      <div class="builder-section"><div class="section-index">3</div><div class="builder-content"><h3>縮小採購範圍 <span class="optional">選填</span></h3><div class="form-grid"><label>採購類別<select name="category"><option value="all">不限類別</option><option>資訊服務</option><option>IT System</option><option>Professional Services</option><option>財物採購</option><option>勞務採購</option><option>工程採購</option><option>Construction-related Services</option><option>研究服務</option></select></label><label>採購地區<select name="region"><option>不限地區</option><option>北部</option><option>中部</option><option>南部</option><option>東部</option><option>離島</option><option>Singapore</option></select></label></div><label>採購機關<input name="agency" placeholder="例如：臺北市政府、Changi Airport Group"><small>可輸入完整名稱或其中一部分。</small></label><div class="form-grid"><label>最低預算（萬元）<input name="min" type="number" min="0" placeholder="不限"></label><label>最高預算（萬元）<input name="max" type="number" min="0" placeholder="不限"></label></div></div></div>
+      <div class="builder-section"><div class="section-index">4</div><div class="builder-content"><h3>日期與通知</h3><div class="form-grid"><label>公告日期<select name="dateRange"><option value="30">最近 30 天</option><option value="7">最近 7 天</option><option value="today">今天</option><option value="all">不限日期</option></select></label><label>截止狀態<select name="deadline"><option value="open">尚未截止</option><option value="7">7 天內截止</option><option value="30">30 天內截止</option><option value="all">全部</option></select></label></div><div class="notify-box"><label class="switch"><input type="checkbox" name="notify" checked><i></i></label><div><b>有新結果時通知我</b><p>每日 08:30 彙整寄送，也可在通知設定中修改。</p></div></div></div></div>
+      <div class="builder-summary"><span>搜尋邏輯</span><b id="ruleSummary">案名包含任一關鍵字 · 尚未截止</b></div>
+      <div class="modal-actions"><button type="button" class="outline-btn" data-close>取消</button><button class="primary" type="submit" id="ruleSubmitBtn">儲存並開始監測</button></div>
+    </form>
+  </div>
+  <div class="modal-backdrop" id="outlineModal" hidden>
+    <section class="modal outline-sheet" role="dialog" aria-modal="true" aria-labelledby="outlineTitle">
+      <button type="button" class="modal-close" data-outline-close>×</button>
+      <div class="outline-head"><div><p class="eyebrow">TENDER OUTLINE RECOGNITION</p><h2 id="outlineTitle">標書大綱辨識</h2><p id="outlineMeta"></p></div><span class="confidence-badge" id="outlineConfidence">辨識度 92%</span></div>
+      <div class="outline-source-text"><span>辨識來源</span><p id="outlineSourceText"></p></div>
+      <div class="outline-grid" id="outlineGrid"></div>
+      <div class="outline-alert" id="outlineAlert"></div>
+      <div class="modal-actions"><button class="outline-btn" data-outline-close>關閉</button><a class="primary" id="outlineSourceLink" href="#" target="_blank">查看原始標案 ↗</a></div>
+    </section>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+  <script src="enhancements.js"></script>
+  <script src="intelligence.js"></script>
+  <script src="subscription.js"></script>
+</body>
+</html>
