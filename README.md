@@ -4,6 +4,10 @@
 
 線上靜態展示：https://moto-droid.github.io/tender-radar/
 
+Netlify 正式版：https://tender-radar-motospatial.netlify.app/
+
+Netlify 管理頁：https://app.netlify.com/projects/tender-radar-motospatial
+
 > GitHub Pages 僅展示前端與示範資料。CAG 即時同步、每日排程、Email 與 LINE 推播需另外啟動或部署 `server.py`。
 
 Netlify 版本已將 `server.py` 的能力改寫成 Netlify Functions，包含 CAG 同步、Netlify Blobs 訂閱儲存、LINE Webhook、測試推播與每 15 分鐘檢查一次的每日排程。推播時間以使用者選擇的台北／新加坡時區計算。
@@ -63,7 +67,13 @@ LINE 使用 Messaging API 的 push message；使用者必須加入 LINE 官方�
 - Functions directory：`netlify/functions`
 - Node.js：20 或更新版本
 
-正式推播需在 Netlify Site configuration → Environment variables 設定 `.env.example` 中的 SMTP 與 LINE 變數；不要把實際密鑰提交到 GitHub。
+GitHub `main` 分支已與 Netlify Continuous Deployment 連結；後續推送到 GitHub 會自動建置並發布。正式推播需在 Netlify Site configuration → Environment variables 設定 `.env.example` 中的 SMTP 與 LINE 變數；不要把實際密鑰提交到 GitHub。
+
+LINE Developers Console 的正式 Webhook URL：
+
+```text
+https://tender-radar-motospatial.netlify.app/api/line/webhook
+```
 
 ## 串接既有爬蟲
 
