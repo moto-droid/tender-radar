@@ -1,0 +1,33 @@
+@import url("/ms-reading.css");
+:root{color-scheme:light}
+@media screen{body{padding-top:64px!important}body::before{content:"";position:fixed;top:0;left:0;right:0;height:64px;z-index:10010;background:#f5f5f4;border-bottom:1px solid #dadddf;pointer-events:none}html[data-ms-theme="dark"] body::before{background:#171b22;border-color:#414956}.site-header,.topbar,body[data-ms-tool] .sidebar,body[data-ms-tool="financial"] main>header{top:64px!important}body[data-ms-tool="designer"] .app-shell{height:calc(100dvh - 64px)!important}body[data-ms-tool="dashboard"] .app{min-height:calc(100dvh - 64px)}html{scroll-padding-top:164px}}
+body{--primary:215 23% 36%!important;--ring:215 23% 50%!important;--ms-accent:#465a70!important}
+html[data-ms-theme="dark"] body{--primary:215 20% 74%!important;--primary-foreground:215 18% 13%!important}
+.journey{background-image:none!important;background-color:#252c36!important;box-shadow:none!important}
+.journey .sat{box-shadow:none;background:#a9b5c4}.journey .orbit{border-color:#a9b5c41f}.journey .node{box-shadow:none;border-color:#a9b5c433}
+.tool-symbol{background:#e8ecf0!important;color:#465a70!important;box-shadow:none!important}
+.tool-card,.solution-grid>a{border-radius:16px!important;box-shadow:none!important}
+html[data-ms-theme="dark"] .tool-symbol{background:#303947!important;color:#c1cad6!important}
+body[data-ms-tool="financial"]{--blue:#465a70!important;--blue-soft:#e8ecf0!important}
+body[data-ms-tool="markets"]{--blue:#465a70!important;--green:#465a70!important;--blue-hover:#35465b!important}
+html[data-ms-theme="dark"] body[data-ms-tool="financial"],html[data-ms-theme="dark"] body[data-ms-tool="markets"]{--blue:#b1bbc8!important;--green:#b1bbc8!important;--blue-soft:#303947!important}
+html[data-ms-theme="dark"]{color-scheme:dark;background:#171b22;--ink:#eef0f3;--text:#eef0f3;--muted:#b9c0cb;--paper:#171b22;--bg:#171b22;--surface:#222832;--surface-2:#2b323e;--line:#414956;--green:#b1bbc8;--blue:#b1bbc8;--ms-ink:#eef0f3;--ms-paper:#171b22;--ms-line:#414956;--sidebar-bg:#1d232c;--background:200 39% 10%;--foreground:150 20% 94%;--card:196 34% 15%;--card-foreground:150 20% 94%;--popover:196 34% 15%;--popover-foreground:150 20% 94%;--muted-foreground:150 15% 72%;--border:190 17% 30%;--primary:162 50% 65%;--primary-foreground:190 45% 12%}
+html[data-ms-theme="dark"] body{background:#171b22!important;color:#eef0f3!important}
+html[data-ms-theme="dark"] [data-ms-surface]{background-color:#222832!important;background-image:none!important}
+html[data-ms-theme="dark"] [data-ms-ink]{color:#e0e4ea!important}
+html[data-ms-theme="dark"] [data-ms-border]{border-color:#414956!important}
+html[data-ms-theme="dark"] .site-header,html[data-ms-theme="dark"] .sidebar{background:#1d232c!important}
+html[data-ms-theme="dark"] .company-logo,html[data-ms-theme="dark"] .ms-company-logo{background:#fff!important}
+html[data-ms-theme="dark"] .hero h1>span,html[data-ms-theme="dark"] .eyebrow,html[data-ms-theme="dark"] .contact-emails a:not(.btn){color:#b1bbc8!important}
+html[data-ms-theme="dark"] .primary,html[data-ms-theme="dark"] .filters button[aria-pressed="true"]{background:#b1bbc8!important;color:#252c36!important}
+html[data-ms-theme="dark"] .journey,html[data-ms-theme="dark"] .closing{background-color:#252c36!important;color:#eef0f3!important}
+html[data-ms-theme="dark"] .app:not(.dark){--surface:#222832;--line:#414956;--muted:#b9c0cb;--blue:#b1bbc8;background:#171b22;color:#eef0f3}
+html[data-ms-theme="dark"] .topbar{background-color:#1d232c!important}
+[data-ms-legacy]{display:none!important}
+.sd-sync-pill{bottom:74px!important}
+body[data-ms-tool="financial"] ms-toolkit-shell,body[data-ms-tool="markets"] ms-toolkit-shell{bottom:14px!important}
+@media(max-width:600px){body[data-ms-tool="financial"] ms-toolkit-shell,body[data-ms-tool="markets"] ms-toolkit-shell{bottom:12px!important}.trigger .company-logo{max-width:90px}}
+@media print{ms-preferences{display:none!important}html[data-ms-theme="dark"] [data-ms-surface]{background:white!important}html[data-ms-theme="dark"] [data-ms-ink]{color:black!important}}
+[data-ms-theme="dark"] .category img,[data-ms-theme="dark"] .product-card img{mix-blend-mode:normal!important;background:#fff;border-radius:12px}
+[data-ms-theme="dark"] .sd-sync-pill{color:#bbc8d8!important}
+

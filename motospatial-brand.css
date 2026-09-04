@@ -1,0 +1,22 @@
+/* Motospatial shared visual foundation v1 */
+:root{--ms-ink:#252c36;--ms-accent:#465a70;--ms-paper:#f5f5f4;--ms-line:#dadddf;--ms-font:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;--primary:164 65% 28%;--ring:164 65% 28%;--radius:.75rem;}
+body{font-family:var(--ms-font)!important}button,input,select,textarea{font-family:inherit}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #758ca8;outline-offset:3px}
+body[data-ms-tool="financial"]{--bg:var(--ms-paper);--text:var(--ms-ink);--line:var(--ms-line);--blue:var(--ms-accent);--blue-soft:#e8ecf0;--sidebar-bg:#eceef0;--ui-radius:12px}
+body[data-ms-tool="financial"] .brand-mark{background:var(--ms-ink);border-radius:9px}
+body[data-ms-tool="replicator"]{--ink:var(--ms-ink);--paper:var(--ms-paper);--green:var(--ms-accent);--mint:var(--ms-accent);--line:var(--ms-line)}
+body[data-ms-tool="replicator"] .brand-mark,body[data-ms-tool="replicator"] .btn-primary{background:var(--ms-ink)}
+body[data-ms-tool="replicator"] .sidebar{background:#eceef0}body[data-ms-tool="replicator"] .nav-item.active{background:#e0e5eb;color:#35465b}
+body[data-ms-tool="dashboard"] .topbar{background:var(--ms-ink);box-shadow:0 1px 0 #ffffff20}
+body[data-ms-tool="dashboard"] .app:not(.dark){--blue:var(--ms-accent);--line:var(--ms-line);background:var(--ms-paper)}
+body[data-ms-tool="esg"]{--tw-ring-color:#465a70}body[data-ms-tool="esg"] .bg-blue-600,body[data-ms-tool="esg"] .bg-indigo-600{background-color:var(--ms-accent)}
+body[data-ms-tool="markets"] button,body[data-ms-tool="rtls"] button{border-radius:10px}
+@media print{ms-toolkit-shell{display:none!important}}
+
+body[data-ms-tool="markets"]{--page:#f5f5f4;--ink:#252c36;--blue:#465a70;--blue-hover:#35465b;--line:#dadddf;--green:#465a70}
+body[data-ms-tool="designer"]{--sd-accent:#465a70}
+body[data-ms-tool="rtls"]{--primary:164 65% 28%;--ring:164 65% 28%}
+body[data-ms-tool="esg"] .bg-primary{background-color:#252c36}body[data-ms-tool="esg"] .text-primary{color:#252c36}body[data-ms-tool="esg"] .bg-secondary{background-color:#465a70}
+body[data-ms-tool="esg"] .hero-bg{background-image:linear-gradient(130deg,#252c36ed,#465a70d9),url('https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')}
+
+body[data-ms-tool="financial"] ms-toolkit-shell,body[data-ms-tool="markets"] ms-toolkit-shell{bottom:72px}
+@media(max-width:640px){body[data-ms-tool="markets"] ms-toolkit-shell{bottom:12px}}

@@ -1,0 +1,9 @@
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Bold.woff") format("woff");font-style:normal;font-weight:700;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-ExtraLight.woff") format("woff");font-style:normal;font-weight:200;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Heavy.woff") format("woff");font-style:normal;font-weight:900;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Light.woff") format("woff");font-style:normal;font-weight:300;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Medium.woff") format("woff");font-style:normal;font-weight:500;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Regular.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Semibold.woff") format("woff");font-style:normal;font-weight:600;font-display:swap;}
+@font-face{font-family:"MiSans";src:url("/fonts/MiSans-Thin.woff") format("woff");font-style:normal;font-weight:100;font-display:swap;}
+:root{--ms-font:"MiSans",sans-serif}html,body,body *:not(i):not([class*="fa-"]):not([class*="material-icons"]){font-family:"MiSans",sans-serif!important}input,button,select,textarea,svg text{font-family:"MiSans",sans-serif!important}
